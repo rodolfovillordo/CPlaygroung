@@ -1,0 +1,45 @@
+Address space = In memory representation of a process.
+	-------------
+	|   STACK   |  ---> VMax
+	|-----------|
+	|    \/     |
+	|           |
+	|           |	        /\
+	|    /\     |	Virtual Address space
+	|-----------|           \/
+	|   HEAP    |
+	|-----------|
+	|   DATA    |
+	|-----------|
+	|   TEXT    |   ---> V0
+	-------------
+Virtual Address: The virtual memory address used by a proccess.
+Physical Address: Locations in physical memmory
+
+Page tables = Mapping of virtual to fisical address
+Page table entry = [vir_address | phy_address] /* A mapping of virtual address and it's physical address on the Page table.
+
+Different process can have the same virtual address space, the kernel will map they to different physical address. 
+
+Operating systems maintain a process control block (PCP) to keep information about registers values, and other usefull informations about the execution of a process. like Stack Pointer, Program Counter, Process number, memory limits etc.
+
+	----------------------
+	|   Process state     |
+	----------------------
+	|   Process number    |
+	----------------------
+	|   program counter   |
+	----------------------
+	|     registers       |
+	----------------------
+	|    Memory limits    |
+	----------------------
+	| list of open files  |
+	----------------------
+	|      priority       |
+	----------------------
+	|    signal mask      |
+	----------------------
+	| CPU Scheduling info |
+	----------------------
+
