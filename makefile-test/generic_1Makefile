@@ -1,0 +1,16 @@
+GC=gcc
+CFLAGS=-c -Wall
+SRCDIR=src
+OBJDIR=obj
+OBJECTS=$(addprefix $(OBJDIR)/, $(patsubst %.c, %.o, $(shell basename -a `ls src/*.c`)))
+
+all: $(OBJECTS) test
+
+test: $(OBJECTS)
+	$(CC) $(OBJECTS) -o $@
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	$(CC) $(CFLAGS) $< -o $@
+
+clean:
+	rm obj/*.o test
