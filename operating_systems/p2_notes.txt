@@ -1,0 +1,99 @@
+Address space = In memory representation of a process.
+	-------------
+	|   STACK   |  ---> VMax
+	|-----------|
+	|    \/     |
+	|           |
+	|           |	        /\
+	|    /\     |	Virtual Address space
+	|-----------|           \/
+	|   HEAP    |
+	|-----------|
+	|   DATA    |
+	|-----------|
+	|   TEXT    |   ---> V0
+	-------------
+Virtual Address: The virtual memory address used by a proccess.
+Physical Address: Locations in physical memmory
+
+Page tables = Mapping of virtual to fisical address
+Page table entry = [vir_address | phy_address] /* A mapping of virtual address 
+and it's physical address on the Page table.
+
+Different process can have the same virtual address space, the kernel will map 
+they to different physical address. 
+
+Operating systems maintain a process control block (PCP) to keep information 
+about registers values, and other usefull informations about the execution 
+of a process. like Stack Pointer, Program Counter, Process number, memory 
+limits etc.
+
+	Process Control Block:
+
+	----------------------      PCB is created when the process is created
+	|   Process state     |     certain filds are updated when the process
+	----------------------      state changes (i.e allocated memory). 
+	|   Process number    |     Other fields like, register
+	----------------------      (i.e program counter) changes too oftem to  
+	|   program counter   |     the Kernel keeps updating it every time. 
+	----------------------      The kernel colect these values from CPU 
+	|     registers       |     and save on the PCB when the process is 
+	----------------------      no longer running on the CPU (interrupted).
+	|    Memory limits    |
+	----------------------
+	| list of open files  |
+	----------------------
+	|      priority       |
+	----------------------
+	|    signal mask      |
+	----------------------
+	| CPU Scheduling info |
+	----------------------
+	|         ...         |
+	----------------------
+
+This save and restore values from PCB when there is a change of the process
+current executing in the processor is called context switch.
+Context Switch: swiching the CPU from the context of one process to the context
+of another.
+
+Context switches are expensive.
+	- Direct costs: Number of cycles for load and restore instructions
+	- Indirect costs: cold cache. cache misses.
+When process is running the CPU will save the data of this process in local 
+cache (L1, L2, L3) this makes the acess to the data much faster. When a context
+switch happens, the data on the cache is the data of the previous process. This
+is called cold cache. When the process tries to access the data the processor
+first looks at the cache, as it's not present (cache miss) it need to fech the
+data from memory, which is much slower.
+
+Process lifecycle.
+
+	  [new]  	        [terminated]
+  *admitted* \     *interrupt*   /  *exit*
+	    [ready]   <--->   [running]
+   *I/O complte* \    *SD*    / *I/O wait*
+	           [waiting]
+
+*SD* = Scheduler dispatch
+
+OS must:
+preempt: Interrupt and save current context
+schedule: run the scheduler to choose the next process in the precess queue
+dispach: dispach the process on the CPU and switch to it's context.
+
+ --- How long should a process run for? How frenquently the scheduler?
+Total Usefull time = Total processing time / Total time
+	(TUT) = TPT / TT
+Tp = Time Process
+Ts = Time Scheduler
+
+    				Total CPU Time  (Tp == Ts)
+			    |[ Tp ] Ts [ Tp ] Ts |
+	TUP = (2 * Tp) / (2*Tp + 2*Ts)~= 50% of CPU time spent with scheduler
+    				Total CPU Time (Tp == 10*Ts)
+         	     |[    Tp    ] Ts [    Tp    ] Ts |
+	TUP = (2*Tp) / (2*Tp + 2*Ts ) ~= 91% of CPU time spent with process
+
+Timeslice: is the time allocated to a process on the CPU without the scheduler
+time.
