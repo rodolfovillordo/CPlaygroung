@@ -1,0 +1,9 @@
+Synchronization mechanisms:
+
+	- Mutual Exclusion (mutex):
+		- Exclusive access to only one thread at time;
+	- Wainting aon another threads
+		- specific condition before processing;
+		- conditional variables
+	- Waking up other threads from wait state;
+
