@@ -1,0 +1,44 @@
+set nocompatible
+
+filetype plugin indent on
+" No scratch preview window on completion
+set completeopt-=preview
+syntax on
+set title
+set number
+set relativenumber
+set background=dark
+set colorcolumn=80
+set path+=**
+set wildmenu
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+" highlight matching braces
+set showmatch
+" language spelling
+set spell spelllang=en_us
+
+"Update tags command:
+
+command! MakeTags !ctags -R .
+
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_winsize=20
+augroup NETRW
+	autocmd!
+	autocmd VimEnter * :Vexplore
+	autocmd VimEnter * :set winfixwidth
+	"Some C tweaks
+	autocmd BufRead,BufNewFile *.c,*.h set colorcolumn=80
+	autocmd BufRead,BufNewFile *.c,*.h iabbr #i #include <><Left>
+	autocmd BufRead,BufNewFile *.c,*.h iabbr #d #define
+	autocmd BufRead,BufNewFile *.c,*.h iabbr #n #ifndef<CR>#endif<Esc>kA
+	autocmd BufRead,BufNewFile *.c,*.h iabbr { {<CR>}<Left><Esc>
+augroup END
+
+
