@@ -1,0 +1,123 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BUFFER_SIZE	operating_systems/problem_set_1/solutions/the-echo-protocol/echo-client.c	20;"	d	file:
+BUFFER_SIZE	operating_systems/problem_set_1/solutions/the-echo-protocol/echo-server.c	22;"	d	file:
+BUF_SIZE	operating_systems/pthreads/producer-consumer.c	5;"	d	file:
+CC	threads/Makefile	/^CC=gcc$/;"	m
+CFLAGS	makefile-test/Makefile	/^CFLAGS=-c -Wall$/;"	m
+CFLAGS	makefile-test/obj/Makefile	/^CFLAGS=-c -Wall$/;"	m
+GC	makefile-test/Makefile	/^GC=gcc$/;"	m
+GC	makefile-test/obj/Makefile	/^GC=gcc$/;"	m
+IP	operating_systems/problem_set_1/echo_cli.c	9;"	d	file:
+IP	operating_systems/problem_set_1/echo_srv.c	11;"	d	file:
+IP	operating_systems/problem_set_1/soc_srv.c	10;"	d	file:
+LISTEN_BACKLOG	operating_systems/problem_set_1/soc_srv.c	12;"	d	file:
+MAX_CLIENT	operating_systems/problem_set_1/echo_srv.c	13;"	d	file:
+MESSAGE	operating_systems/problem_set_1/solutions/the-echo-protocol/echo-client.c	21;"	d	file:
+NUM_READERS	operating_systems/problem_set_1/solutions/priority-readers-and-writers/priority-readers-and-writers.c	18;"	d	file:
+NUM_READS	operating_systems/problem_set_1/solutions/priority-readers-and-writers/priority-readers-and-writers.c	19;"	d	file:
+NUM_THREADS	operating_systems/pthreads/pthread-creation-quiz-1.c	6;"	d	file:
+NUM_THREADS	operating_systems/pthreads/pthread-creation-quiz-2.c	6;"	d	file:
+NUM_THREADS	operating_systems/pthreads/pthread-creation-quiz-3.c	6;"	d	file:
+NUM_THREADS	operating_systems/pthreads/pthread1.c	4;"	d	file:
+NUM_WRITERS	operating_systems/problem_set_1/solutions/priority-readers-and-writers/priority-readers-and-writers.c	20;"	d	file:
+NUM_WRITES	operating_systems/problem_set_1/solutions/priority-readers-and-writers/priority-readers-and-writers.c	21;"	d	file:
+OBJDIR	makefile-test/Makefile	/^OBJDIR=obj$/;"	m
+OBJECTS	makefile-test/Makefile	/^OBJECTS=$(addprefix $(OBJDIR)\/, $(patsubst %.c, %.o, $(shell basename -a `ls src\/*.c`)))$/;"	m
+OBJECTS	makefile-test/obj/Makefile	/^OBJECTS=$(SOURCES:.c=.o)$/;"	m
+PORT	operating_systems/problem_set_1/echo_cli.c	10;"	d	file:
+PORT	operating_systems/problem_set_1/echo_srv.c	12;"	d	file:
+PORT	operating_systems/problem_set_1/soc_cli.c	10;"	d	file:
+PORT	operating_systems/problem_set_1/soc_srv.c	11;"	d	file:
+PS1_PRIORITY_READERS_AND_WRITERS_H_	operating_systems/problem_set_1/solutions/priority-readers-and-writers/priority-readers-and-writers.h	11;"	d
+SERVER	operating_systems/problem_set_1/soc_cli.c	9;"	d	file:
+SERVER_ADDR	operating_systems/problem_set_1/solutions/simple-socket-client/simple-socket-client.c	18;"	d	file:
+SERVER_ADDR	operating_systems/problem_set_1/solutions/the-echo-protocol/echo-client.c	18;"	d	file:
+SERVER_PORT	operating_systems/problem_set_1/solutions/simple-socket-client/simple-socket-client.c	19;"	d	file:
+SERVER_PORT	operating_systems/problem_set_1/solutions/simple-socket-server/simple-socket-server.c	17;"	d	file:
+SERVER_PORT	operating_systems/problem_set_1/solutions/the-echo-protocol/echo-client.c	19;"	d	file:
+SERVER_PORT	operating_systems/problem_set_1/solutions/the-echo-protocol/echo-server.c	21;"	d	file:
+SOURCES	makefile-test/obj/Makefile	/^SOURCES=$(shell basename -a `ls ..\/src\/*.c`)$/;"	m
+SRCDIR	makefile-test/Makefile	/^SRCDIR=src$/;"	m
+TARGET	makefile-test/Makefile	/^TARGET := test$/;"	m
+THREAD_MAX	operating_systems/problem_set_1/readers_priority.c	7;"	d	file:
+VPATH	makefile-test/obj/Makefile	/^VPATH = ..\/src$/;"	m
+_F1_H_	makefile-test/src/f1.h	4;"	d
+__unused	attributes.c	3;"	d	file:
+a	gets_lopp.c	/^	int a;$/;"	m	struct:t	file:
+add	operating_systems/pthreads/producer-consumer.c	/^int add = 0;  			\/* place to add next element *\/$/;"	v
+b	gets_lopp.c	/^	int b;$/;"	m	struct:t	file:
+buffer	operating_systems/pthreads/producer-consumer.c	/^int buffer[BUF_SIZE];  	\/* shared buffer *\/$/;"	v
+c_cons	operating_systems/pthreads/producer-consumer.c	/^pthread_cond_t c_cons = PTHREAD_COND_INITIALIZER; \/* consumer waits on this cond var *\/$/;"	v
+c_prod	operating_systems/pthreads/producer-consumer.c	/^pthread_cond_t c_prod = PTHREAD_COND_INITIALIZER; \/* producer waits on this cond var *\/$/;"	v
+c_read	operating_systems/problem_set_1/readers_priority.c	/^pthread_cond_t c_read = PTHREAD_COND_INITIALIZER;$/;"	v
+c_write	operating_systems/problem_set_1/readers_priority.c	/^pthread_cond_t c_write = PTHREAD_COND_INITIALIZER;$/;"	v
+capitalizeBuffer	operating_systems/problem_set_1/solutions/the-echo-protocol/echo-server.c	/^void capitalizeBuffer(char *buffer) {$/;"	f
+chat	operating_systems/problem_set_1/soc_srv.c	/^void* chat(void *client)$/;"	f
+consumer	operating_systems/pthreads/producer-consumer.c	/^void *consumer(void *param) {$/;"	f
+f1	makefile-test/src/f1.c	/^void f1(void)$/;"	f
+f2	makefile-test/src/f2.c	/^void f2(void)$/;"	f
+fatal	operating_systems/problem_set_1/echo_cli.c	/^void fatal(char *s)$/;"	f
+fatal	operating_systems/problem_set_1/echo_srv.c	/^void fatal(char *s)$/;"	f
+fatal	operating_systems/problem_set_1/soc_srv.c	/^void fatal(char *message)$/;"	f
+find_nth_term	rec.c	/^int find_nth_term(int n, int a, int b, int c) {$/;"	f
+foo	operating_systems/pthreads/pthread-creation.c	/^void *foo (void *arg) {		\/* thread main *\/$/;"	f
+gReadPhase	operating_systems/problem_set_1/solutions/priority-readers-and-writers/priority-readers-and-writers.c	/^pthread_cond_t gReadPhase = PTHREAD_COND_INITIALIZER;$/;"	v
+gReaders	operating_systems/problem_set_1/solutions/priority-readers-and-writers/priority-readers-and-writers.c	/^int gWaitingReaders = 0, gReaders = 0;$/;"	v
+gSharedMemoryLock	operating_systems/problem_set_1/solutions/priority-readers-and-writers/priority-readers-and-writers.c	/^pthread_mutex_t gSharedMemoryLock = PTHREAD_MUTEX_INITIALIZER;$/;"	v
+gSharedValue	operating_systems/problem_set_1/solutions/priority-readers-and-writers/priority-readers-and-writers.c	/^unsigned int gSharedValue = 0;$/;"	v
+gWaitingReaders	operating_systems/problem_set_1/solutions/priority-readers-and-writers/priority-readers-and-writers.c	/^int gWaitingReaders = 0, gReaders = 0;$/;"	v
+gWritePhase	operating_systems/problem_set_1/solutions/priority-readers-and-writers/priority-readers-and-writers.c	/^pthread_cond_t gWritePhase = PTHREAD_COND_INITIALIZER;$/;"	v
+hello	operating_systems/pthreads/pthread-creation-quiz-1.c	/^void *hello (void *arg) { \/* thread main *\/$/;"	f
+hello	operating_systems/pthreads/pthread1.c	/^void* hello(void *a)$/;"	f
+m	operating_systems/problem_set_1/readers_priority.c	/^pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;$/;"	v
+m	operating_systems/pthreads/producer-consumer.c	/^pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;  	\/* mutex lock for buffer *\/$/;"	v
+main	attributes.c	/^int main(int argc, char *argv[]){$/;"	f
+main	gets_lopp.c	/^int main(void)$/;"	f
+main	if-case.c	/^int main()$/;"	f
+main	int-hex.c	/^int main() {$/;"	f
+main	makefile-test/src/main.c	/^int main()$/;"	f
+main	mat.c	/^int main() $/;"	f
+main	operating_systems/problem_set_1/echo_cli.c	/^int main( int argc, char *argv[])$/;"	f
+main	operating_systems/problem_set_1/echo_srv.c	/^int main (void)$/;"	f
+main	operating_systems/problem_set_1/readers_priority.c	/^int main(void)$/;"	f
+main	operating_systems/problem_set_1/soc_cli.c	/^int main(void)$/;"	f
+main	operating_systems/problem_set_1/soc_srv.c	/^int main (void)$/;"	f
+main	operating_systems/problem_set_1/solutions/priority-readers-and-writers/priority-readers-and-writers.c	/^int main(int argc, char **argv) {$/;"	f
+main	operating_systems/problem_set_1/solutions/simple-socket-client/simple-socket-client.c	/^int main(int argc, char **argv) {$/;"	f
+main	operating_systems/problem_set_1/solutions/simple-socket-server/simple-socket-server.c	/^int main(int argc, char **argv) {$/;"	f
+main	operating_systems/problem_set_1/solutions/the-echo-protocol/echo-client.c	/^int main(int argc, char **argv) {$/;"	f
+main	operating_systems/problem_set_1/solutions/the-echo-protocol/echo-server.c	/^int main(int argc, char **argv) {$/;"	f
+main	operating_systems/pthreads/producer-consumer.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	operating_systems/pthreads/pthread-creation-quiz-1.c	/^int main (void) {$/;"	f
+main	operating_systems/pthreads/pthread-creation-quiz-2.c	/^int main(void) {$/;"	f
+main	operating_systems/pthreads/pthread-creation-quiz-3.c	/^int main(void) {$/;"	f
+main	operating_systems/pthreads/pthread-creation.c	/^int main (void) {$/;"	f
+main	operating_systems/pthreads/pthread1.c	/^int main()$/;"	f
+main	pointer.c	/^int main() {$/;"	f
+main	rec.c	/^int main() {$/;"	f
+main	scan.c	/^int main(int argc, char *argv[])$/;"	f
+main	threads/clone_demo.c	/^int main(int argc, char* argv[]) $/;"	f
+main	variadic_function.c	/^int main(void)$/;"	f
+marks_summation	pointer.c	/^int marks_summation(int* marks, int number_of_students, char gender) {$/;"	f
+num	operating_systems/pthreads/producer-consumer.c	/^int num = 0;  			\/* number elements in buffer *\/$/;"	v
+p_mat	mat.c	/^void p_mat(int **m, int l, int c){$/;"	f
+print_args	variadic_function.c	/^void print_args(int i, ...)$/;"	f
+producer	operating_systems/pthreads/producer-consumer.c	/^void *producer(void *param) {$/;"	f
+r_wait	operating_systems/problem_set_1/readers_priority.c	/^int r_wait = 0;$/;"	v
+reader	operating_systems/problem_set_1/readers_priority.c	/^void* reader(void* param)$/;"	f
+readerMain	operating_systems/problem_set_1/solutions/priority-readers-and-writers/priority-readers-and-writers.c	/^void *readerMain(void *threadArgument) {$/;"	f
+rem	operating_systems/pthreads/producer-consumer.c	/^int rem = 0;  			\/* place to remove next element *\/$/;"	v
+shared	operating_systems/problem_set_1/readers_priority.c	/^int shared = 0;$/;"	v
+t	gets_lopp.c	/^struct t {$/;"	s	file:
+t_function	threads/clone_demo.c	/^void t_function(int number_t, char *cmd) $/;"	f
+threadFunc	operating_systems/pthreads/pthread-creation-quiz-2.c	/^void *threadFunc(void *pArg) { \/* thread main *\/$/;"	f
+threadFunc	operating_systems/pthreads/pthread-creation-quiz-3.c	/^void *threadFunc(void *pArg) { \/* thread main *\/$/;"	f
+up_string	operating_systems/problem_set_1/echo_srv.c	/^void up_string(char message[])$/;"	f
+w_count	operating_systems/problem_set_1/readers_priority.c	/^int w_count = 0;$/;"	v
+writer	operating_systems/problem_set_1/readers_priority.c	/^void* writer(void* val)$/;"	f
+writerMain	operating_systems/problem_set_1/solutions/priority-readers-and-writers/priority-readers-and-writers.c	/^void *writerMain(void *threadArgument) {$/;"	f

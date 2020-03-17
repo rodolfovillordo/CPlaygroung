@@ -11,7 +11,7 @@
 
 void fatal(char *s)
 {
-	fprintf(stderr, "ERRROR: %s\n", s);
+	fprintf(stderr, "ERROR %s\n", s);
 	exit(1);
 }
 

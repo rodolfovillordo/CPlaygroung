@@ -1,0 +1,34 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BUFFER_SIZE	the-echo-protocol/echo-client.c	20;"	d	file:
+BUFFER_SIZE	the-echo-protocol/echo-server.c	22;"	d	file:
+MESSAGE	the-echo-protocol/echo-client.c	21;"	d	file:
+NUM_READERS	priority-readers-and-writers/priority-readers-and-writers.c	18;"	d	file:
+NUM_READS	priority-readers-and-writers/priority-readers-and-writers.c	19;"	d	file:
+NUM_WRITERS	priority-readers-and-writers/priority-readers-and-writers.c	20;"	d	file:
+NUM_WRITES	priority-readers-and-writers/priority-readers-and-writers.c	21;"	d	file:
+PS1_PRIORITY_READERS_AND_WRITERS_H_	priority-readers-and-writers/priority-readers-and-writers.h	11;"	d
+SERVER_ADDR	simple-socket-client/simple-socket-client.c	18;"	d	file:
+SERVER_ADDR	the-echo-protocol/echo-client.c	18;"	d	file:
+SERVER_PORT	simple-socket-client/simple-socket-client.c	19;"	d	file:
+SERVER_PORT	simple-socket-server/simple-socket-server.c	17;"	d	file:
+SERVER_PORT	the-echo-protocol/echo-client.c	19;"	d	file:
+SERVER_PORT	the-echo-protocol/echo-server.c	21;"	d	file:
+capitalizeBuffer	the-echo-protocol/echo-server.c	/^void capitalizeBuffer(char *buffer) {$/;"	f
+gReadPhase	priority-readers-and-writers/priority-readers-and-writers.c	/^pthread_cond_t gReadPhase = PTHREAD_COND_INITIALIZER;$/;"	v
+gReaders	priority-readers-and-writers/priority-readers-and-writers.c	/^int gWaitingReaders = 0, gReaders = 0;$/;"	v
+gSharedMemoryLock	priority-readers-and-writers/priority-readers-and-writers.c	/^pthread_mutex_t gSharedMemoryLock = PTHREAD_MUTEX_INITIALIZER;$/;"	v
+gSharedValue	priority-readers-and-writers/priority-readers-and-writers.c	/^unsigned int gSharedValue = 0;$/;"	v
+gWaitingReaders	priority-readers-and-writers/priority-readers-and-writers.c	/^int gWaitingReaders = 0, gReaders = 0;$/;"	v
+gWritePhase	priority-readers-and-writers/priority-readers-and-writers.c	/^pthread_cond_t gWritePhase = PTHREAD_COND_INITIALIZER;$/;"	v
+main	priority-readers-and-writers/priority-readers-and-writers.c	/^int main(int argc, char **argv) {$/;"	f
+main	simple-socket-client/simple-socket-client.c	/^int main(int argc, char **argv) {$/;"	f
+main	simple-socket-server/simple-socket-server.c	/^int main(int argc, char **argv) {$/;"	f
+main	the-echo-protocol/echo-client.c	/^int main(int argc, char **argv) {$/;"	f
+main	the-echo-protocol/echo-server.c	/^int main(int argc, char **argv) {$/;"	f
+readerMain	priority-readers-and-writers/priority-readers-and-writers.c	/^void *readerMain(void *threadArgument) {$/;"	f
+writerMain	priority-readers-and-writers/priority-readers-and-writers.c	/^void *writerMain(void *threadArgument) {$/;"	f

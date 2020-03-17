@@ -1,0 +1,59 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BUF_SIZE	pthreads/producer-consumer.c	5;"	d	file:
+IP	problem_set_1/echo_cli.c	9;"	d	file:
+IP	problem_set_1/echo_srv.c	10;"	d	file:
+IP	problem_set_1/soc_srv.c	10;"	d	file:
+LISTEN_BACKLOG	problem_set_1/soc_srv.c	12;"	d	file:
+MAX_CLIENT	problem_set_1/echo_srv.c	12;"	d	file:
+NUM_THREADS	pthreads/pthread-creation-quiz-1.c	6;"	d	file:
+NUM_THREADS	pthreads/pthread-creation-quiz-2.c	6;"	d	file:
+NUM_THREADS	pthreads/pthread-creation-quiz-3.c	6;"	d	file:
+NUM_THREADS	pthreads/pthread1.c	4;"	d	file:
+PORT	problem_set_1/echo_cli.c	10;"	d	file:
+PORT	problem_set_1/echo_srv.c	11;"	d	file:
+PORT	problem_set_1/soc_cli.c	10;"	d	file:
+PORT	problem_set_1/soc_srv.c	11;"	d	file:
+SERVER	problem_set_1/soc_cli.c	9;"	d	file:
+THREAD_MAX	problem_set_1/readers_priority.c	7;"	d	file:
+add	pthreads/producer-consumer.c	/^int add = 0;  			\/* place to add next element *\/$/;"	v
+buffer	pthreads/producer-consumer.c	/^int buffer[BUF_SIZE];  	\/* shared buffer *\/$/;"	v
+c_cons	pthreads/producer-consumer.c	/^pthread_cond_t c_cons = PTHREAD_COND_INITIALIZER; \/* consumer waits on this cond var *\/$/;"	v
+c_prod	pthreads/producer-consumer.c	/^pthread_cond_t c_prod = PTHREAD_COND_INITIALIZER; \/* producer waits on this cond var *\/$/;"	v
+c_read	problem_set_1/readers_priority.c	/^pthread_cond_t c_read = PTHREAD_COND_INITIALIZER;$/;"	v
+c_write	problem_set_1/readers_priority.c	/^pthread_cond_t c_write = PTHREAD_COND_INITIALIZER;$/;"	v
+chat	problem_set_1/soc_srv.c	/^void* chat(void *client)$/;"	f
+consumer	pthreads/producer-consumer.c	/^void *consumer(void *param) {$/;"	f
+fatal	problem_set_1/echo_cli.c	/^void fatal(char *s)$/;"	f
+fatal	problem_set_1/echo_srv.c	/^void fatal(char *s)$/;"	f
+fatal	problem_set_1/soc_srv.c	/^void fatal(char *message)$/;"	f
+foo	pthreads/pthread-creation.c	/^void *foo (void *arg) {		\/* thread main *\/$/;"	f
+hello	pthreads/pthread-creation-quiz-1.c	/^void *hello (void *arg) { \/* thread main *\/$/;"	f
+hello	pthreads/pthread1.c	/^void* hello(void *a)$/;"	f
+m	problem_set_1/readers_priority.c	/^pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;$/;"	v
+m	pthreads/producer-consumer.c	/^pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;  	\/* mutex lock for buffer *\/$/;"	v
+main	problem_set_1/echo_cli.c	/^int main( int argc, char *argv[])$/;"	f
+main	problem_set_1/readers_priority.c	/^int main(void)$/;"	f
+main	problem_set_1/soc_cli.c	/^int main(void)$/;"	f
+main	problem_set_1/soc_srv.c	/^int main (void)$/;"	f
+main	pthreads/producer-consumer.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	pthreads/pthread-creation-quiz-1.c	/^int main (void) {$/;"	f
+main	pthreads/pthread-creation-quiz-2.c	/^int main(void) {$/;"	f
+main	pthreads/pthread-creation-quiz-3.c	/^int main(void) {$/;"	f
+main	pthreads/pthread-creation.c	/^int main (void) {$/;"	f
+main	pthreads/pthread1.c	/^int main()$/;"	f
+num	pthreads/producer-consumer.c	/^int num = 0;  			\/* number elements in buffer *\/$/;"	v
+producer	pthreads/producer-consumer.c	/^void *producer(void *param) {$/;"	f
+r_wait	problem_set_1/readers_priority.c	/^int r_wait = 0;$/;"	v
+reader	problem_set_1/readers_priority.c	/^void* reader(void* param)$/;"	f
+rem	pthreads/producer-consumer.c	/^int rem = 0;  			\/* place to remove next element *\/$/;"	v
+shared	problem_set_1/readers_priority.c	/^int shared = 0;$/;"	v
+threadFunc	pthreads/pthread-creation-quiz-2.c	/^void *threadFunc(void *pArg) { \/* thread main *\/$/;"	f
+threadFunc	pthreads/pthread-creation-quiz-3.c	/^void *threadFunc(void *pArg) { \/* thread main *\/$/;"	f
+up_string	problem_set_1/echo_srv.c	/^char* up_string(char *message)$/;"	f
+w_count	problem_set_1/readers_priority.c	/^int w_count = 0;$/;"	v
+writer	problem_set_1/readers_priority.c	/^void* writer(void* val)$/;"	f
