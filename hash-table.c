@@ -27,7 +27,7 @@ int main(void)
 	struct element e1 = { .v = 10, .name = "el1" };
 	struct element e2 = { .v = 10, .name = "el2" };
 	struct element e3 = { .v = 10, .name = "el3" };
-	//struct element tmp;
+	struct element tmp;
 	struct h_node *h[MAX_ELEMENTS] = {NULL};
 
 	h_insert(h,e1.name, &e1);
@@ -39,9 +39,9 @@ int main(void)
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
 	printf(" dummy: %d \n", (int)h_lookup(h, "dummy"));
 #pragma GCC diagnostic pop
-/*	tmp = *(struct element *)h_delete(&h, e3.name);
+	tmp = *(struct element *)h_delete(h, e2.name);
 	printf("deleted el3 = { name: %s, v: %d }\n", tmp.name, tmp.v);
-	*/
+	printf(" el3->name: %s \n", ((struct element *)h_lookup(h, "el3"))->name);
 	return 0;
 
 }
@@ -101,22 +101,34 @@ void* h_lookup(struct h_node *ht[], const char *n)
 void* h_delete(struct h_node *ht[], char *k)
 {
 	int i = hash(k);
-	struct h_node **el;
-	struct h_node *prev;
+	int flag = 0;
+	struct h_node *el;
+	struct h_node *prev = NULL;
 	void *tmp;
 
-	el = &ht[i];
-	prev = (*el);
-	while (*el){
-		if (strcmp((*el)->k, k) == 0){
-			tmp = (*el)->v;
-			if ((*el)->next && prev != (*el)){
-				prev->next = (*el)->next;
-				free(*el);
-			}
-			return tmp;
+	el = ht[i];
+	while (el){
+		if (strcmp(el->k, k) == 0){
+			tmp = el->v;
+			flag = 1;
+			break;
 		}
+		prev = el;
+		el = el->next;
 	}
-
-	return NULL;
+	if (flag){
+		if (el->next)
+			if (prev)
+				prev->next = el->next;
+			else
+				ht[i] = el->next;
+		else
+			if (prev)
+				prev->next = NULL;
+			else
+				ht[i] = NULL;
+		free(el);
+		return tmp;
+	}
+	return INVALID_POINTER;
 }
