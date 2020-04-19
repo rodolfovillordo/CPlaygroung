@@ -21,6 +21,7 @@ int hash (const char *n);
 void* h_lookup(struct h_node *ht[], const char *n);
 void* h_delete(struct h_node *ht[], char *k);
 int h_insert(struct h_node *ht[], char *k, void *v);
+void* h_update(struct h_node *ht[], char *k, void *v);
 
 int main(void)
 {
@@ -42,6 +43,8 @@ int main(void)
 	tmp = *(struct element *)h_delete(h, e2.name);
 	printf("deleted el3 = { name: %s, v: %d }\n", tmp.name, tmp.v);
 	printf(" el3->name: %s \n", ((struct element *)h_lookup(h, "el3"))->name);
+	h_update(h, "dummy", (void *)"str test");
+	printf(" dummy: %s \n", (char *)h_lookup(h, "dummy"));
 	return 0;
 
 }
@@ -129,6 +132,21 @@ void* h_delete(struct h_node *ht[], char *k)
 				ht[i] = NULL;
 		free(el);
 		return tmp;
+	}
+	return INVALID_POINTER;
+}
+
+void* h_update(struct h_node *ht[], char *k, void *v)
+{
+	int i = hash(k);
+	struct h_node *el = ht[i];
+	while ( el ){
+		if(strcmp(el->k, k) == 0){
+			el->v = v;
+			return el->v;
+			break;
+		}
+		el = el->next;
 	}
 	return INVALID_POINTER;
 }
