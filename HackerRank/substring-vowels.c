@@ -41,6 +41,6 @@ int main(void)
 	int size;
 	char *str;
 	scanf("%s", str);
-	scanf("%d", size);
-	printf("substr > #vowels (%s)\n", findSubstring(str,size);
+	scanf("%d", &size);
+	printf("%s\n", findSubstring(str,size));
 }

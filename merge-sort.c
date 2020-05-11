@@ -1,14 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void printv(int *a)
-{
-	printf("---");
-	for (int i = 0; i < 4; i++)
-		printf(" a[%d]: %d ", i, a[i]);
-	printf("\n--\n");
-}
-
 void merge(int *a, int *aux, int ini, int end)
 {
 	int m = (ini + end) / 2;

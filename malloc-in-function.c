@@ -5,6 +5,10 @@ void s(int *i, int v){
 	*i = v;
 }
 
+
+/* Need to receive a reference for the original pointer, otherwise the 
+ * scope of the memory alocated will end with the end of the function and
+ */
 void f(int **i)
 {
 	*i = malloc(2 * sizeof(int));
