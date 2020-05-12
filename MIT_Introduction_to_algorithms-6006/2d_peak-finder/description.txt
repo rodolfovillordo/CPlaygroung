@@ -1,0 +1,36 @@
+Find a peak in a two dimension matrix (N x M);
+
+An coordinate n,m is a peak if and only if (iff) it's value is greater or equals all 
+it's neighbors;
+
+considering the matrix
+
+a b d e
+f g h k
+l m n o
+
+g is a peak iff g >= f, g >= h g >= b g >= m;
+
+i.e
+given the 3x4 matrix M:
+    1 2 3 4 
+M = 0 9 6 7
+    2 3 8 0
+
+9 (M[1][1]) os a peak on M
+
+Greedy ascent algorithm: Get a position in the middle of the matrix define 
+a path patter and walk trough elements until find a peak. 
+	- Complexity: O(N*M); O(n^2) if N==M.
+
+Divide and conquer algorithm: 
+* Get a column (j) in the middle of the matrix and find the global maximum 
+	element e(i,j)
+* compare e(i, j-1) e(i, j) and e(i, j+1)
+* pick the left columns if e(i, j-1) is greater than e(i,j); and similarly to 
+	the right.
+* recursively solve the new problem with half of the columns;
+* if e(i,j) is greater than e(i, j-1) and e(i, j+1); e(i,j) is a peak
+* if you have a single column, find the global maximum and it's the peak
+
+Complexity: cols * ln(rows)
