@@ -13,9 +13,23 @@ typedef struct graph {
 	vertex *v;
 }graph;
 
+struct element {
+	void *el;
+	struct element *next;
+};
+typedef struct queue {
+	int size;
+	struct element *first;
+	struct element *last;
+} queue;
 void init_graph(graph *g, int nv);
 int add_vertex(vertex* prev, int id);
 int add_edge(graph *g, int vO, int vD);
+int empty(queue *q) { return !q->size; }
+int enqueue(queue *q, void *el);
+void* dequeue(queue *q);
+void gen_svg(graph *g, char *filename);
+void collor_path(char *filename, graph *path);
 
 void init_graph(graph *g, int nv)
 {
@@ -54,18 +68,18 @@ int add_edge(graph *g, int vO, int vD)
 	add_vertex(trav, vD);
 }
 
-void gen_svg(graph g, char *filename)
+void gen_svg(graph *g, char *filename)
 {
 	FILE *fd;
 	vertex *trav;
 	fd = fopen(filename, "w+");
 	if (fd == NULL){
-		printf("unable to open file %s. exit(1)\n", filename);
+		perror("fopen: ");
 	}
 	fprintf(fd,"strict graph %s\n{\n", filename);
-	for (int i = 0; i < g.nV; i++){
+	for (int i = 0; i < g->nV; i++){
 		fprintf(fd, "\t %d -- { ", i);
-		trav = g.v[i].next;
+		trav = g->v[i].next;
 		while (trav != NULL){
 			fprintf(fd, "%d ", trav->id);
 			trav = trav->next;
@@ -78,5 +92,51 @@ void gen_svg(graph g, char *filename)
 	free(trav);
 }
 
+void collor_path(char *filename, graph *path)
+{
+	FILE *fd;
+
+	fd = fopen(filename, "r+");
+	if (fd == NULL)
+		perror("fopen: ");
+	fseek(fd, -2, SEEK_END);
+	for (int i = 0; i < path->nV; i++){
+		fprintf(fd, "\t%d: [collor=red]\n", path->v[i].id);
+	}
+
+	fprintf(fd, "}\n");
+	fclose(fd);
+}
+
+int enqueue(queue *q, void *el)
+{
+	struct element *aux = (struct element *)malloc(sizeof(struct element)); 
+	aux->el = el;
+	if (q->size == 0)
+		q->first = aux;
+	else
+		q->last->next = aux;
+	q->last = aux;
+	q->size++;
+
+	return q->size;
+}
+
+void* dequeue(queue *q)
+{
+	void *aux;
+	struct element *f;
+	if (q->size < 1)
+		return NULL;
+	aux = q->first->el;
+	f = q->first;
+	if (q->size == 1)
+		q->first = q->last = NULL;
+	else
+		q->first = q->first->next;
+	q->size--;
+	free(f);
+	return aux;
+}
 			
 #endif
