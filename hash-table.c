@@ -55,7 +55,7 @@ int h_insert(struct h_node *ht[], char *k, void *v)
 	int li = 0;
 	int i = hash(k);
 	if (h_lookup(ht, k) != INVALID_POINTER)
-		return 0;
+		h_update(ht, k, v);
 	prev = NULL;
 	cur = &ht[i];
 	while((*cur) != NULL){
