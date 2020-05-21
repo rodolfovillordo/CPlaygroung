@@ -37,27 +37,29 @@ void load_graph(graph *g)
 
 vertex* bfs(graph g, int sV, int dV)
 {
-	int pV;
 	int visited[g.nV] = { 0 };
-	vertex *trav, *prev;
+	vertex *trav, *lvl;
 	queue aux;
 	struct backtrack {
-		int distance;
-		int prev;
-	} bt[g.nV] = { 0 };
+		int dist;
+		int from;
+	} bt[g.nV] = { };
 	enqueue(aux, &g.v[sV]);
 
-	visited[sV] = -1;
-	bt[sV].distance = 0;
-	bt[sV].prev = -1;
+	visited[sV] = 1;
 
 	while ( !empty(aux) ){
-		prev = trav;
 		trav =(vertex *) dequeue(aux);
+		lvl = trav;
+
 		while ( trav != NULL ){
 			if ( !visited[trav->id] ){
 				enqueue(aux, trav);
 				visited[trav->id] = 1;
+			}
+			if (bt[trav->id].dist > bt[lvl->id].dist + 1){
+				bt[trav->id].dist = bt[lvl->id].dist + 1;
+				bt[trav->id].from = bt[lvl->id].from;
 			}
 			trav = trav->next;
 		}
