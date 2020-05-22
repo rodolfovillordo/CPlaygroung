@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 
 #ifndef DATA_STRUCTURES_H
 #define DATA_STRUCTURES_H
@@ -13,6 +14,11 @@ typedef struct graph {
 	vertex *v;
 }graph;
 
+typedef struct path {
+	int nV;
+	int *p;
+} path;
+
 struct element {
 	void *el;
 	struct element *next;
@@ -22,6 +28,7 @@ typedef struct queue {
 	struct element *first;
 	struct element *last;
 } queue;
+
 void init_graph(graph *g, int nv);
 int add_vertex(vertex* prev, int id);
 int add_edge(graph *g, int vO, int vD);
@@ -29,7 +36,7 @@ int empty(queue *q) { return !q->size; }
 int enqueue(queue *q, void *el);
 void* dequeue(queue *q);
 void gen_svg(graph *g, char *filename);
-void collor_path(char *filename, graph *path);
+void color_path(char *filename, path *p);
 
 void init_graph(graph *g, int nv)
 {
@@ -68,17 +75,22 @@ int add_edge(graph *g, int vO, int vD)
 	add_vertex(trav, vD);
 }
 
+/* Generate graph description file in DOT language.
+ * http://www.graphviz.org/doc/info/lang.html
+ */
 void gen_svg(graph *g, char *filename)
 {
 	FILE *fd;
 	vertex *trav;
+
 	fd = fopen(filename, "w+");
 	if (fd == NULL){
 		perror("fopen: ");
 	}
-	fprintf(fd,"strict graph %s\n{\n", filename);
+
+	fprintf(fd,"strict graph \n{\n");
 	for (int i = 0; i < g->nV; i++){
-		fprintf(fd, "\t %d -- { ", i);
+		fprintf(fd, "\t%d -- { ", i);
 		trav = g->v[i].next;
 		while (trav != NULL){
 			fprintf(fd, "%d ", trav->id);
@@ -92,7 +104,8 @@ void gen_svg(graph *g, char *filename)
 	free(trav);
 }
 
-void collor_path(char *filename, graph *path)
+/* Edit graph visialization to color the vertext of a path */
+void color_path(char *filename, path *p)
 {
 	FILE *fd;
 
@@ -100,8 +113,8 @@ void collor_path(char *filename, graph *path)
 	if (fd == NULL)
 		perror("fopen: ");
 	fseek(fd, -2, SEEK_END);
-	for (int i = 0; i < path->nV; i++){
-		fprintf(fd, "\t%d: [collor=red]\n", path->v[i].id);
+	for (int i = 0; i < p->nV; i++){
+		fprintf(fd, "\t%d [color=\"darkolivegreen1\",style=\"filled\"];\n", p->p[i]);
 	}
 
 	fprintf(fd, "}\n");
