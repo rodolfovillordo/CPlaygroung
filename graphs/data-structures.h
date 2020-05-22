@@ -35,7 +35,7 @@ int add_edge(graph *g, int vO, int vD);
 int empty(queue *q) { return !q->size; }
 int enqueue(queue *q, void *el);
 void* dequeue(queue *q);
-void gen_svg(graph *g, char *filename);
+void gen_svg(graph *g, char *filename, int directed);
 void color_path(char *filename, path *p);
 
 void init_graph(graph *g, int nv)
@@ -78,19 +78,29 @@ int add_edge(graph *g, int vO, int vD)
 /* Generate graph description file in DOT language.
  * http://www.graphviz.org/doc/info/lang.html
  */
-void gen_svg(graph *g, char *filename)
+void gen_svg(graph *g, char *filename, int directed)
 {
 	FILE *fd;
 	vertex *trav;
+	char edge[3];
+
+	if (directed)
+		strcpy(edge,"->");
+	else
+		strcpy(edge,"--");
 
 	fd = fopen(filename, "w+");
 	if (fd == NULL){
 		perror("fopen: ");
 	}
 
-	fprintf(fd,"strict graph \n{\n");
+	if ( directed )
+		fprintf(fd,"digraph \n{\n");
+	else
+		fprintf(fd,"strict graph \n{\n");
+
 	for (int i = 0; i < g->nV; i++){
-		fprintf(fd, "\t%d -- { ", i);
+		fprintf(fd, "\t%d %s { ", i, edge);
 		trav = g->v[i].next;
 		while (trav != NULL){
 			fprintf(fd, "%d ", trav->id);

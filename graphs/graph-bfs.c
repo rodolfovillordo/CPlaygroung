@@ -2,9 +2,14 @@
 #include <stdio.h>
 #include <string.h>
 #include "data-structures.h"
-#include "aux.h"
 
+struct backtrack {
+	int dist;
+	int from;
+};
 
+path* gen_path(int sV, int dV, struct backtrack *bt);
+void load_graph(graph *g);
 path* bfs(graph *g, int sV, int dV);
 
 int main (void)
@@ -14,7 +19,7 @@ int main (void)
 
 	load_graph(&g1);
 	p = bfs(&g1,7,3);
-	gen_svg(&g1, "color.neato");
+	gen_svg(&g1, "color.neato", 0);
 	if ( p )
 		color_path("color.neato", p);
 }
@@ -59,4 +64,40 @@ path* bfs(graph *g, int sV, int dV)
 	
 	}
 	return NULL;
+}
+
+void load_graph(graph *g)
+{
+	int v;
+	char buff[100];
+	char *token;
+	scanf("%d%*c", &v);
+	init_graph(g, v);
+	for (int i = 0; i < v; i++){
+		scanf("%[^\n]%*c", buff);
+		token = strtok(buff, " ");
+		while (token != NULL){
+			if (atoi(token) == -1){
+				token = strtok(NULL, " ");
+				continue;
+			}
+			add_edge(g, i, atoi(token));
+			token = strtok(NULL, " ");
+		}
+	}
+}
+
+path* gen_path(int sV, int dV, struct backtrack *bt)
+{
+	path *p = malloc(sizeof(p));
+	int j = dV;
+
+	p->nV = bt[dV].dist + 1;
+	p->p = (int *)calloc(p->nV, sizeof(int));
+	p->p[bt[dV].dist] = dV;
+	for (int i = p->nV - 2; i >= 0; i--){
+		p->p[i] = bt[j].from;
+		j = bt[j].from;
+	}
+	return p;
 }
