@@ -43,7 +43,7 @@ void init_graph(graph *g, int nv)
 	g->nV = nv;
 	g->v = malloc(nv*sizeof(vertex));
 	for (int i = 0; i < nv; i++){
-		g->v[i].id = -1;
+		g->v[i].id = i;
 		g->v[i].next = NULL;
 	}
 }
