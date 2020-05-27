@@ -51,8 +51,11 @@ void init_graph(graph *g, int nv)
 int add_vertex(vertex* prev, int id)
 {
 	prev->next = (vertex *)malloc(sizeof(vertex));
+	if ( ! prev->next )
+		return 0;
 	prev->next->id = id;
 	prev->next->next = NULL;
+	return 1;
 }
 
 int add_edge(graph *g, int vO, int vD)
@@ -63,16 +66,12 @@ int add_edge(graph *g, int vO, int vD)
 		return 0;
 	if (vD < 0 || vD > (g->nV -1))
 		return 0;
-	if (g->v[vO].id == -1){
-		g->v[vO].id = vO;
-		add_vertex(&(g->v[vO]), vD);
-		return 1;
-	}
+
 	trav = &g->v[vO];
 	while (trav->next != NULL)
 		trav = trav->next;
 
-	add_vertex(trav, vD);
+	return add_vertex(trav, vD);
 }
 
 /* Generate graph description file in DOT language.

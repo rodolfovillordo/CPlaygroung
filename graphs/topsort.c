@@ -61,14 +61,13 @@ int* topsort(graph *g)
 int dfs(graph *g, int at, int *ordering, int i, int *visited)
 {
 	vertex *trav = &g->v[at];
-	vertex *prev;
 	visited[at] = 1;	
 
-	while( trav->next ){
+	while( trav ){
 		if ( !visited[trav->id] )
 			i = dfs(g, trav->id, ordering, i, visited);
 		trav = trav->next;
 	}
-	ordering[i] = trav->id;
+	ordering[i] = g->v[at].id;
 	return i - 1;
 }
