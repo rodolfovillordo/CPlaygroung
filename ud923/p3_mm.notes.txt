@@ -1,0 +1,143 @@
+## Virtual Page Tables: 
+A process's virtual representation of the physical memory
+Every process has it's VPT representing the whole memory on machine. A page
+table maps the virtual memory address with the actually physical memory.
+Two distinguish process can have the same virtual memory address pointing to
+different physical memory addresses.
+
+The PT do not stores every single memory address on it, it splits the address
+in a page address + offset;
+
+ - VPN: Virtual Page Number
+ - PFN: Physical Frame Number
+Virtual address  -- Physical address
+ [VPN | offset] <--> [PFN | offset]
+
+### Page entry
+A page table entry also saves a number of flags that helps on memory management
+(access permissions, caching ...)
+o x86 the page entry looks like below
+31							0
+[ PFN |   | G | PAT | D | A | PCD | PWT | U/S | R/W | P ]
+
+- P: Present
+- R/W: Permission bit (0 RO, 1 R/W)
+- U/S: permission bit (0 User mode, 1 supervisor mode)
+- PWT: Write-trough
+- PCD: Cache disabled
+- A: Accessed
+- D: Dirty
+- PAT: set if Page Attribute Table enabled[1]
+- G: Global
+- blank space (for future usage)
+- PFN: Page Frame Number
+
+### MMU & TLB
+Memory translation has it's cost, and if needed to be performed at every memory
+access it will extremely slow down the process. That's why the translation is 
+done by the Memory Management Unit on the processor. Also, to not need to 
+translate the virtual page number into physical frame number at every memory
+access, processors keeps a cache of these translations in an area called 
+translation lookaside buffer on the chip MMU.
+
+## Virtual page tables size (old flat pages mapping):
+
+### depends on
+- Number of virtual page numbers
+- Page Table entry size (Normally 4bytes including PFN + Flags)
+- Page size
+
+### Number of virtual page numbers:
+- number_of_vpn = Address size / page size;
+
+### Page size
+- Different HW has different page sizes (4k, 8k, 2mb, ...)
+
+### Example
+
+In a 32 bits physical memory;
+Address size = 32b = 2^32
+Page size = 4kb = 2^12
+Page table entry size = 4b
+
+Virtual page table size = number_of_vpn * page table entry size;
+Virtual page table size = (Address size / Page size) * page table entry size;
+Virtual page table size = (2^32 / 2^12) * 4b;
+Virtual page table size = 2^20 * 4b; 
+Virtual page table size = 1M * 4b = 4Mb;
+
+## Hierarchical Page tables
+
+In this model, the memory mapping is not performed in a single page table.
+It is divided in multiple (hierarchical) page tables.
+
+The outer page is called page directory, it points to the next level of the 
+hierarchy. The next level can be another indirection or the page tables.
+The internal page tables exists only for virtual memory regions that are valid.
+This means that the OS will only allocate a new page table if the requested 
+memory does not fit into the pre-existent tables.
+
+Consider and example of a two level Hierarchic page table.
+
+ Page num | offset
+[ p1 , p2 | offset ]
+
+p1 = outer page index;
+p2 = page table index;
+offset = offset into the physical page frame (the actual value).
+
+### Inner table address size;
+
+Inner table address = Internal page address size (p2) * page size (offset)
+
+### Example
+
+Address size = 32 bits = 2^32
+page directory address size = 2^12
+internal page address size = 2^10
+Offset = 2^10;
+
+  p1,   p2  | offset
+[2^10, 2^10 |  2^10 ] 
+
+Inner table address = internal address size * page size
+Inner table address = 2^10 * 2^10 = 1k * 1k = 1MB 
+
+Virtual page table size = inner page address size * number of allocated pages;
+
+
+COW and Checkpointing:
+
+Both also rely on the MMU component present on CPU.
+
+CoW: when a child process is started, Kernel sets the process memory as write
+protected on MMU. When one process tries to write on write-protected memory 
+MMU will rise a exception. Kernel will look at the exception reason and copy 
+the memory to another physical address and update the page table of the faulty
+process.
+
+checkpointing: Is technique used for failure recovery. Periodically saves the 
+entire process state. Then when a failure happens the process doesn't need to
+start from the beginning, it can start from the nearest checkpoint.
+
+Simple approach: Pause the process and copy the state;
+Better approach: write-protect the entire address space of the process and save
+	the process state.
+	- As the process is still running it will continue "dirtying pages",
+		then copy the diffs of the dirty pages for incremental checkpoints.
+A  trade-off for this is that the recovery will be more complex, once 
+the process will need to recover each incremental diff, or the need of a 
+background process to recreate the state based on these diffs.
+
+Other uses for checkpoints are:
+Debugging: rewind and replay technique, where the debugger rewind the process
+from a checkpoint and will move forward until we find the error on the program.
+We can gradually go back to older checkpoints. (GDB reverse-* [2])
+
+Migration: Is the technique to save the process checkpoints in another machine
+and then restart it there. Useful on disaster recovery and consolidation.
+
+---
+*References:*
+[1] https://en.wikipedia.org/wiki/Page_attribute_table
+[2] https://www.gnu.org/software/gdb/news/reversible.html
